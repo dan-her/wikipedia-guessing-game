@@ -1,1 +1,1 @@
-# $rname
+# wikipedia-guessing-game
