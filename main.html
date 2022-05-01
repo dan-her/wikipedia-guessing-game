@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta charset="UTF-8">
+<script src="jquery-3.6.0.min.js"></script>
+</head>
 <body>
 <h3>WIKIPEDIA GUESSING GAME!!!</h3>
 <h4>Guess the subject of the Wikipedia Article correctly to score points!</h4>
@@ -7,33 +11,58 @@
 <p id="maintext"></p>
 <form>
 	<input type="text" id="answer" name="textin"><br><br>
-	<input type="button" value="Guess!" onclick="guess()">
+	<input type="button" value="Guess!" onclick="guess()"> <!---->
 </form>
 <script>
-// important: this is the major part of the code in here that needs to change. we have to read in the 'question' and answer dynamically!
+console.log("a")
 var index = 0;
 var pointTotal = 0;
-const questions = ["The ___________________ is a historic Southern plantation near Jones Creek, Texas.","___________________ was an American hard rock band from Los Angeles, California. Formed in 2004, the band was composed of vocalist and guitarist Daniel Davies, bassist Rich Mullins and drummer Brad Hargreaves. Hargreaves was later replaced by Rob Oswald, and guitarist William Mecum also joined in a later incarnation of the group.","___________________ is a quarterly peer-reviewed academic journal that covers the fields of communications and media. The current editors are Sarah Aitkinson (King's College London) and Helen Kennedy (Brighton University). It was founded in 1995 by Julia Knight and Alexis Weedon (University of Bedfordshire) who edited volumes 1-23. The journal set the agenda for research the social and cultural implications of the new media technologies. First published by John Libbey Media, and then The University of Luton Press, it is now published by SAGE Publications.","The ___________________ was among the first known large scale fires in Stockholm prior to the city plan changes of the 17th-century. The fire began in the evening of September 1, 1625 in Kåkbrinken, and devastated the southwestern parts of Stadsholmen. It lasted three days and reportedly destroyed a fifth of the infrastructure of Stockholm at the time. The fire resulted in the building of a new city over the burnt areas, and a new tightened organisation of inspection of the fire prevention measures in the city.","In relation to nuclear warfare, ___________________ denotes the inadvertent destruction of nuclear warheads or their delivery systems by detonations from other warheads in the same attack. The blast, EMP and debris cloud may knock them off course, cause damage or destroy them."];
-const answers = ["Durazno Plantation","Year Long Disaster","Convergence: The International Journal of Research into New Media Technologies","Great Stockholm Fire of 1625","nuclear fratricide"];
-const replacer = "___________________"; // fixed-length replacement for the item you are supposed to guess. currently unused.
+const question = "";
+const answer = "";
 
+function runCrawler(){
+    $.ajax = ({
+        type: "POST",
+        url: "localhost:8000",
+        success: resultLog
+    });
+    console.log('aaaaaaaaa')
+    
+}
+
+function resultLog(){
+    console.log('wowowowowow');
+}
+
+function onLoad(){
+    console.log('w')
+    runCrawler();
+}
+/*
 var quaestor = document.getElementById("maintext");
-quaestor.innerHTML = questions[index];
+quaestor.innerHTML = question;
 var ans = document.getElementById("answer");
 var scoreboard = document.getElementById("score");
-
+var pythonic;
+*/
 function guess(){
-	var guess = ans.value;
+    console.log('click')
+    runCrawler();
+    console.log('clock')
+	/*var guess = ans.value;
 	console.log(guess);
-	console.log(answers[index]);
-	if (guess===answers[index]){
+	console.log(answer);
+	if (guess===answer){
 		pointTotal++;
 		scoreboard.innerHTML = "POINTS: " + pointTotal;
+		// success popup -- dropdown thing like "website says: you win!"
+	} else {
+	    // failure popup!
 	}
-	index++;
-	quaestor.innerHTML = questions[index]; // this index manipulation goes away
-	ans.value = ""; // once we have webcrawling.
+	// make the game reset the question here
+	ans.value = ""; // clear the input*/
 }
+
 
 </script>
 </body>
