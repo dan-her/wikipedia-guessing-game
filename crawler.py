@@ -14,6 +14,7 @@ def index():
         output = output.replace(']', '')
         output = output.replace('})', '}')
         output = output.replace('\'', '\"')
+        output = output.replace('\"s', '\'s')
         output = output.replace('}}, {', '}, ')
         print("fuck.\n" + output)
         output = json.loads(output)
