@@ -2,16 +2,64 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>Wikipedia Guessing Game</title>
+<style>
+
+.header {
+  padding: 40px;
+  text-align: center;
+  background: white; 
+  color: black;
+}
+.main {
+  flex: 70%;
+  padding: 20px;
+}
+
+.sksksksksk {
+  background:yellow;
+  color:black;
+}
+
+.scoreQues {
+  display: flex;
+  background-color: white;
+}
+.side {
+  flex: 30%;
+  padding: 20px;
+}
+
+.input {  
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 700px) {
+  .scoreQues, .input {   
+    flex-direction: column;
+  }
+}
+</style>
 </head>
 <body>
-<h3>WIKIPEDIA GUESSING GAME!!!</h3>
-<h4>Guess the subject of the Wikipedia Article correctly to score points!</h4>
-<h4 id="score">POINTS: 0</h4>
-<p id="maintext"></p>
-<form>
-	<input type="text" id="answer" name="textin"><br><br>
-	<input type="button" value="Guess!" onclick="guess()">
-</form>
+<div class="header">
+    <h3>WIKIPEDIA GUESSING GAME!!!</h3>
+    <h4>Guess the subject of the Wikipedia Article correctly to score points!</h4>
+</div>
+<div class="input">
+    <div class="main">
+    <h4 id="score"><span class="sksksksksk">POINTS: 0</span></h4>
+    <p id="maintext"></p>
+    <div class="side">
+        <br><br><br><br><br><br><br><br><br><br><br>
+        <form>
+        	<input type="text" id="answer" name="textin"><br><br>
+        	<input type="button" value="Guess!" onclick="guess()">
+        </form>
+    </div>
+</div>
+
 <script>
 var jaysin;
 var obj;
@@ -41,10 +89,12 @@ function guess(){
 	console.log(answer);
 	if (guess===answer){
 		pointTotal++;
-		scoreboard.innerHTML = "POINTS: " + pointTotal;
+		scoreboard.innerHTML = "<span class=\"sksksksksk\">POINTS: " + pointTotal + "</span>";
+		alert("Your guess of " + answer + " was correct!");
 		// success popup -- dropdown thing like "website says: you win!"
 	} else {
 	    // failure popup!
+	    alert("Your guess of " + guess + " was incorrect.\nThe correct answer was " + answer + ".");
 	}
 	// make the game reset the question here
 	ans.value = ""; // clear the input*/
