@@ -2,7 +2,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <h3>WIKIPEDIA GUESSING GAME!!!</h3>
@@ -11,45 +10,33 @@
 <p id="maintext"></p>
 <form>
 	<input type="text" id="answer" name="textin"><br><br>
-	<input type="button" value="Guess!" onclick="guess()"> <!---->
+	<input type="button" value="Guess!" onclick="guess()">
 </form>
 <script>
-console.log("a")
-var index = 0;
+var jaysin;
+var obj;
+var question;
+var answer;
+var index = 1;
 var pointTotal = 0;
-const question = "";
-const answer = "";
-
-function runCrawler(){
-    $.ajax = ({
-        type: "POST",
-        url: "localhost:8000",
-        success: resultLog
-    });
-    console.log('aaaaaaaaa')
-    
-}
-
-function resultLog(){
-    console.log('wowowowowow');
-}
-
-function onLoad(){
-    console.log('w')
-    runCrawler();
-}
-/*
 var quaestor = document.getElementById("maintext");
-quaestor.innerHTML = question;
 var ans = document.getElementById("answer");
 var scoreboard = document.getElementById("score");
-var pythonic;
-*/
+
+const jreq = new XMLHttpRequest();
+jreq.onload = function(){
+    console.log('uh');
+	jaysin = this.responseText;
+	obj = JSON.parse(jaysin);
+    answer = obj.pairs.answer[index];
+	question = obj.pairs.questions[index];
+    quaestor.innerHTML = question;
+}
+jreq.open("GET", "data.json");
+jreq.send();
+
 function guess(){
-    console.log('click')
-    runCrawler();
-    console.log('clock')
-	/*var guess = ans.value;
+    var guess = ans.value;
 	console.log(guess);
 	console.log(answer);
 	if (guess===answer){
@@ -61,6 +48,10 @@ function guess(){
 	}
 	// make the game reset the question here
 	ans.value = ""; // clear the input*/
+	index++;
+	question = obj.pairs.questions[index];
+	answer = obj.pairs.answer[index];
+    quaestor.innerHTML = question;
 }
 
 

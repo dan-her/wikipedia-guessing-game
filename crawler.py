@@ -7,11 +7,24 @@ app = Flask(__name__)
 def index():
     with open('data.json', 'w') as fil:
         output = crawl()
+        output = str(output)
+        print("fuck.\n" + output)
+        output = output.replace('[', '')
+        output = output.replace('({', '{')
+        output = output.replace(']', '')
+        output = output.replace('})', '}')
+        output = output.replace('\'', '\"')
+        output = output.replace('}}, {', '}, ')
+        print("fuck.\n" + output)
+        output = json.loads(output)
         json.dump(output, fil)
+    return output
 
 def crawl():
+    answers = {};
+    questions = {};
     finished = 0;
-    while (finished == 0):
+    while (finished < 20):
         seed_url = 'https://en.wikipedia.org/wiki/Special:Random'
         page = requests.get(seed_url)
         body = page.text
@@ -34,10 +47,12 @@ def crawl():
         question = question.replace(realTitle, '__________')
         if (question.count('_') > 10):
             continue
-        finished = 1
-        print(realTitle)
-        print(question)
-    return {'answer':realTitle, 'quest':question}
+        finished += 1
+        answers[str(finished)] = realTitle
+        questions[str(finished)] = question
+    nestAnswers = {"answer":answers};
+    nestQuestions = {"questions":questions};
+    return {"pairs":(nestAnswers, nestQuestions)}
     
 if __name__ == "__main__":
     app.run(port = 8000)
